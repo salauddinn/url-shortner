@@ -12,12 +12,12 @@
 
         <H1>URL Shirinker</H1>
         
-        <form action="" method="post" class="my-4 form-inline">
-            <label for="fullUrl">Url</label>
-            <input type="url" name='fullUrl' id='fullUrl'>
-            <button type="submit">Shirnk</button>
+        <form action="/shortUrls" method="post" class="my-4 form-inline">
+            <label class="sr-only" for="fullUrl" >Url</label>
+            <input type="url" placeholder="Url" name='fullUrl' id='fullUrl' class="form-control col mr-2">
+            <button type="submit" class="btn btn-success">Shirnk</button>
         </form>
-        <table>
+        <table class="table table-striped table-responsice">
             <thead>
                 <tr>
                     <th> Full URL</th>
@@ -26,13 +26,18 @@
                 </tr>
             </thead>
             <tbody>
+                <% shortUrls.forEach(shortUrl => { %>
                 <tr>
-                    <td>
-                        <a href="http://facebook.com">http://facebook.com</a>
-                    </td>  
-                    <td><a href="http://fb.com">http://fb.com</a></td>
-                    <td>13</td>
+                 
+                        <td>
+                            <a href="<%= shortUrl.full %>" ><%= shortUrl.full%></a>
+                        </td>  
+                        <td><a href="<%= shortUrl.short%>"><%= shortUrl.short%></a></td>
+                        <td><%= shortUrl.clicks%></td>
+                   
+                    
                 </tr>
+                <% }) %>
             </tbody>
         </table>
     </div>
